@@ -6,17 +6,13 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class User {
 
-    private static final List<Gender> VALUES =
-            Collections.unmodifiableList(Arrays.asList(Gender.values()));
-    private static final int SIZE = VALUES.size();
-    private static final Random RANDOM = new Random();
+public class User implements Comparable<User> {
+
     private final String name;
     private final int age;
     private final String email;
     private final String gender;
-
     public User() {
         Faker faker = new Faker();
         this.name = faker.name().firstName();
@@ -37,10 +33,6 @@ public class User {
         System.out.println(users.toString());
     }
 
-    public static Gender randomGender() {
-        return VALUES.get(RANDOM.nextInt(SIZE));
-    }
-
     public String getGender() {
         return gender;
     }
@@ -55,6 +47,19 @@ public class User {
 
     }
 
+    public int compareTo(User u) {
+        return 0;
+    }
+
     private enum Gender {MALE,FEMALE}
+
+    private static final List<Gender> VALUES =
+            Collections.unmodifiableList(Arrays.asList(Gender.values()));
+    private static final int SIZE = VALUES.size();
+    private static final Random RANDOM = new Random();
+
+    public static Gender randomGender()  {
+        return VALUES.get(RANDOM.nextInt(SIZE));
+    }
 }
 
